@@ -7,7 +7,8 @@
 <meta name="description" content="Logan Livingston builds design systems that connect design and engineering. Creator of FICO's IRIS design system.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet"></noscript>
 <style>
 :root{
   --bg:#F4F6F9;--surface:#FFFFFF;--text:#13233A;--muted:#4B5B70;--accent:#1D5FBF;--accent-ink:#FFFFFF;--line:#D6DEE8;--band:#E2E9F2;
@@ -338,15 +339,15 @@ footer{padding:28px 0 40px;color:var(--muted);font-size:14px;border-top:1px soli
       <div class="work-grid">
         <figure class="shot">
           <div class="player" style="--ar:1080/1920">
-            <video preload="metadata" playsinline aria-label="Screen recording of the in-store map and digital display app" src="assets/store-map.mp4#t=0.5"></video>
-            <button class="play" type="button" aria-label="Play video: in-store map and digital displays"><span class="play-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M8 5.5v13a1 1 0 0 0 1.52.85l10.4-6.5a1 1 0 0 0 0-1.7L9.52 4.65A1 1 0 0 0 8 5.5z"/></svg></span><span class="play-label">Watch demo · 0:27</span></button>
+            <video preload="none" playsinline aria-label="Screen recording of the in-store map and digital display app" data-src="assets/store-map.mp4#t=0.5"></video>
+            <button class="play" type="button"><span class="play-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M8 5.5v13a1 1 0 0 0 1.52.85l10.4-6.5a1 1 0 0 0 0-1.7L9.52 4.65A1 1 0 0 0 8 5.5z"/></svg></span><span class="play-label"><span class="pl-text">Watch demo · 0:27</span><span class="sr"> of the in-store map and digital displays</span></span></button>
           </div>
           <figcaption><strong>In-store map and digital displays.</strong> I was the product owner from purchase to launch: buying the screens, working with vendors, building the UI and deploying the app.</figcaption>
         </figure>
         <figure class="shot">
           <div class="player" style="--ar:561/1218">
-            <video preload="metadata" playsinline aria-label="Screen recording of the multi-card layout in the Dillard's mobile app" src="assets/dillards-app.mp4#t=0.5"></video>
-            <button class="play" type="button" aria-label="Play video: Dillard's mobile app multi-card layout"><span class="play-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M8 5.5v13a1 1 0 0 0 1.52.85l10.4-6.5a1 1 0 0 0 0-1.7L9.52 4.65A1 1 0 0 0 8 5.5z"/></svg></span><span class="play-label">Watch demo · 0:14</span></button>
+            <video preload="none" playsinline aria-label="Screen recording of the multi-card layout in the Dillard's mobile app" data-src="assets/dillards-app.mp4#t=0.5"></video>
+            <button class="play" type="button"><span class="play-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M8 5.5v13a1 1 0 0 0 1.52.85l10.4-6.5a1 1 0 0 0 0-1.7L9.52 4.65A1 1 0 0 0 8 5.5z"/></svg></span><span class="play-label"><span class="pl-text">Watch demo · 0:14</span><span class="sr"> of the Dillard's mobile app multi-card layout</span></span></button>
           </div>
           <figcaption><strong>Dillard's mobile app.</strong> I designed the UI in Adobe XD and built it with the team, including this multi-card layout.</figcaption>
         </figure>
@@ -438,12 +439,17 @@ footer{padding:28px 0 40px;color:var(--muted);font-size:14px;border-top:1px soli
 <script>
 (function(){
   document.querySelectorAll('.player').forEach(function(p){
-    var v=p.querySelector('video'),b=p.querySelector('.play'),l=b.querySelector('.play-label'),t=l.textContent;
+    var v=p.querySelector('video'),b=p.querySelector('.play'),l=b.querySelector('.pl-text');
+    function load(){ if(!v.getAttribute('src')){ v.src=v.getAttribute('data-src'); } }
+    if('IntersectionObserver' in window){
+      var io=new IntersectionObserver(function(es){ if(es[0].isIntersecting){ load(); io.disconnect(); } },{rootMargin:'400px'});
+      io.observe(p);
+    } else { load(); }
     b.addEventListener('click',function(){
-      v.controls=true;p.classList.add('playing');
+      load();v.controls=true;p.classList.add('playing');
       var r=v.play(); if(r&&r.catch){r.catch(function(){v.controls=false;p.classList.remove('playing');});}
     });
-    v.addEventListener('ended',function(){v.controls=false;v.currentTime=0.5;p.classList.remove('playing');l.textContent='Replay';b.setAttribute('aria-label',b.getAttribute('aria-label').replace('Play video','Replay video'));});
+    v.addEventListener('ended',function(){v.controls=false;v.currentTime=0.5;p.classList.remove('playing');l.textContent='Replay';});
   });
 })();
 </script>
