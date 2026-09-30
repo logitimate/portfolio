@@ -46,6 +46,11 @@ p{margin:0}
 .ph svg{width:36px;height:36px;stroke:var(--accent)}
 .ph strong{color:var(--text);font-weight:600;font-size:17px}
 .shot figcaption{margin-top:10px;font-size:15px;color:var(--muted)}
+.shot img,.shot video{display:block;width:100%;height:auto;border:1px solid var(--line);border-radius:14px;background:var(--surface)}
+.shot video{max-height:70vh;object-fit:contain;background:#000}
+.shot figcaption strong{color:var(--text)}
+.work-grid{margin-top:36px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:40px;align-items:start}
+.work-grid .shot{margin:0}
 
 .hero{padding:80px 24px 64px;display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:56px;align-items:start}
 .who{display:flex;align-items:center;gap:14px;margin-bottom:28px}
@@ -134,7 +139,7 @@ footer{padding:28px 0 40px;color:var(--muted);font-size:14px;border-top:1px soli
   .path{grid-template-columns:1fr;gap:0}
   .path li{border-top:0;border-left:2px solid var(--line);padding:0 0 28px 24px}
   .path li::before{top:6px;left:-7px}
-  .proof,.pillars,.skills,.talks,.shots-2{grid-template-columns:1fr}
+  .proof,.pillars,.skills,.talks,.shots-2,.work-grid{grid-template-columns:1fr}
   .toolbox{grid-template-columns:1fr}
   .job{grid-template-columns:1fr;gap:6px}
   .flow{flex-direction:column}
@@ -224,9 +229,8 @@ footer{padding:28px 0 40px;color:var(--muted);font-size:14px;border-top:1px soli
       <p class="intro">I started IRIS in 2020 with one or two teams using it. Today 50 domains across FICO's legacy and modern platforms depend on it, and marketing and product share one token language. I've built more than 90 components for it, in both the core design system library and the platform.</p>
 
       <figure class="shot">
-        <!-- Replace this placeholder with: <img src="..." alt="Screenshot: IRIS documentation site"> -->
-        <div class="ph wide"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8.5" cy="9.5" r="1.5"/><path d="M21 16l-5-5-8 8"/></svg><strong>Screenshot: IRIS documentation site</strong><span>A component page showing a live StackBlitz example. 1600 × 800 px.</span></div>
-        <figcaption>The IRIS docs site, with live examples developers can edit without touching production code.</figcaption>
+        <img src="assets/iris-docs.png" width="1908" height="960" loading="lazy" alt="The IRIS documentation site home page: a sidebar for Home, Get Started, Patterns, Typography, Iconography and Components, and the headline Build better, accessible UIs faster with IRIS and Angular.">
+        <figcaption>The IRIS docs site: patterns, typography, iconography and a component library with live examples developers can edit without touching production code.</figcaption>
       </figure>
 
       <div class="proof">
@@ -274,8 +278,7 @@ footer{padding:28px 0 40px;color:var(--muted);font-size:14px;border-top:1px soli
       </ol>
 
       <figure class="shot">
-        <!-- Replace this placeholder with: <img src="..." alt="Screenshot: tokens in Figma"> -->
-        <div class="ph wide"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8.5" cy="9.5" r="1.5"/><path d="M21 16l-5-5-8 8"/></svg><strong>Screenshot: tokens in Figma</strong><span>The Figma variables or token panel the pipeline reads from. 1600 × 800 px.</span></div>
+        <img src="assets/figma-tokens.png" width="1908" height="1303" loading="lazy" alt="Figma variables panel for the Product Components file, showing a tokens collection of 315 variables grouped into space, radius, stroke, surface and button, with the surface base tokens open.">
         <figcaption>Where every theme starts: tokens defined in Figma, before the pipeline turns them into CSS.</figcaption>
       </figure>
 
@@ -285,6 +288,11 @@ footer{padding:28px 0 40px;color:var(--muted);font-size:14px;border-top:1px soli
         <div><h3>Beyond Angular</h3><p>Semantic tokens and SCSS utilities for spacing, surfaces, typography, and icons let non-Angular teams match the IRIS look and feel.</p></div>
         <div><h3>Docs and quality</h3><p>A documentation site with ephemeral StackBlitz examples, a Playwright test harness, semantic versioning, and release logs keep 50 domains confident in every update.</p></div>
       </div>
+
+      <figure class="shot">
+        <img src="assets/hugo-docs.png" width="871" height="722" loading="lazy" alt="The FICO Platform help site, a documentation site built with Hugo, showing a hero, a grid of platform topics and a how-it-works diagram.">
+        <figcaption>IRIS without the components: the FICO Platform help site is built in Hugo and gets its look from IRIS tokens and styles alone.</figcaption>
+      </figure>
     </div>
   </section>
 
@@ -309,6 +317,26 @@ footer{padding:28px 0 40px;color:var(--muted);font-size:14px;border-top:1px soli
     </div>
   </section>
 
+  <section id="selected-work" aria-labelledby="selected-title">
+    <div class="wrap">
+      <h2 id="selected-title">More work beyond design systems</h2>
+      <p class="intro">Before and alongside IRIS, I've designed, built and shipped products end to end.</p>
+      <div class="work-grid">
+        <figure class="shot">
+          <video controls muted playsinline preload="none" aria-label="Screen recording of the in-store map and digital display app">
+            <source src="assets/store-map.mp4" type="video/mp4">
+          </video>
+          <figcaption><strong>In-store map and digital displays.</strong> I was the product owner from purchase to launch: buying the screens, working with vendors, building the UI and deploying the app.</figcaption>
+        </figure>
+        <figure class="shot">
+          <video controls muted playsinline preload="metadata" aria-label="Screen recording of the multi-card layout in the Dillard's mobile app">
+            <source src="assets/dillards-app.mp4" type="video/mp4">
+          </video>
+          <figcaption><strong>Dillard's mobile app.</strong> I designed the UI in Adobe XD and built it with the team, including this multi-card layout.</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
   <section id="work" aria-labelledby="work-title">
     <div class="wrap">
       <h2 id="work-title">Experience</h2>
