@@ -49,6 +49,15 @@ p{margin:0}
 .shot img,.shot video{display:block;width:100%;height:auto;border:1px solid var(--line);border-radius:14px;background:var(--surface)}
 .shot video{max-height:70vh;object-fit:contain;background:#000}
 .shot figcaption strong{color:var(--text)}
+.player{position:relative;width:100%;max-width:340px;margin:0 auto;aspect-ratio:var(--ar);border-radius:20px;overflow:hidden;background:#0B1220;border:1px solid var(--line);box-shadow:0 22px 44px -22px rgba(8,14,26,.55)}
+.shot .player video{position:absolute;inset:0;width:100%;height:100%;max-height:none;border:0;border-radius:0;background:#0B1220;object-fit:contain}
+.play{position:absolute;inset:0;width:100%;border:0;padding:0;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;background:linear-gradient(180deg,rgba(8,14,26,.10) 0%,rgba(8,14,26,.62) 100%);color:#fff;font-family:var(--font-body);font-weight:600;font-size:14px;transition:opacity .25s ease}
+.play:focus-visible{outline:3px solid #fff;outline-offset:-6px}
+.play-icon{width:76px;height:76px;border-radius:50%;display:grid;place-items:center;background:rgba(255,255,255,.2);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border:1.5px solid rgba(255,255,255,.6);box-shadow:0 8px 24px rgba(0,0,0,.3);transition:transform .2s ease,background-color .2s ease}
+.play-icon svg{margin-left:4px}
+.play:hover .play-icon,.play:focus-visible .play-icon{transform:scale(1.08);background:rgba(255,255,255,.34)}
+.play-label{padding:6px 14px;border-radius:999px;background:rgba(8,14,26,.6);letter-spacing:.01em}
+.player.playing .play{opacity:0;pointer-events:none}
 .work-grid{margin-top:36px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:40px;align-items:start}
 .work-grid .shot{margin:0}
 
@@ -327,19 +336,20 @@ footer{padding:28px 0 40px;color:var(--muted);font-size:14px;border-top:1px soli
       <p class="intro">Before and alongside IRIS, I've designed, built and shipped products end to end.</p>
       <div class="work-grid">
         <figure class="shot">
-          <video controls muted playsinline preload="none" aria-label="Screen recording of the in-store map and digital display app">
-            <source src="assets/store-map.mp4" type="video/mp4">
-          </video>
+          <div class="player" style="--ar:1080/1920">
+            <video preload="metadata" playsinline aria-label="Screen recording of the in-store map and digital display app" src="assets/store-map.mp4#t=0.5"></video>
+            <button class="play" type="button" aria-label="Play video: in-store map and digital displays"><span class="play-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M8 5.5v13a1 1 0 0 0 1.52.85l10.4-6.5a1 1 0 0 0 0-1.7L9.52 4.65A1 1 0 0 0 8 5.5z"/></svg></span><span class="play-label">Watch demo · 0:27</span></button>
+          </div>
           <figcaption><strong>In-store map and digital displays.</strong> I was the product owner from purchase to launch: buying the screens, working with vendors, building the UI and deploying the app.</figcaption>
         </figure>
         <figure class="shot">
-          <video controls muted playsinline preload="metadata" aria-label="Screen recording of the multi-card layout in the Dillard's mobile app">
-            <source src="assets/dillards-app.mp4" type="video/mp4">
-          </video>
+          <div class="player" style="--ar:561/1218">
+            <video preload="metadata" playsinline aria-label="Screen recording of the multi-card layout in the Dillard's mobile app" src="assets/dillards-app.mp4#t=0.5"></video>
+            <button class="play" type="button" aria-label="Play video: Dillard's mobile app multi-card layout"><span class="play-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M8 5.5v13a1 1 0 0 0 1.52.85l10.4-6.5a1 1 0 0 0 0-1.7L9.52 4.65A1 1 0 0 0 8 5.5z"/></svg></span><span class="play-label">Watch demo · 0:14</span></button>
+          </div>
           <figcaption><strong>Dillard's mobile app.</strong> I designed the UI in Adobe XD and built it with the team, including this multi-card layout.</figcaption>
         </figure>
-      </div>
-    </div>
+      </div>    </div>
   </section>
   <section id="work" aria-labelledby="work-title">
     <div class="wrap">
@@ -422,6 +432,18 @@ footer{padding:28px 0 40px;color:var(--muted);font-size:14px;border-top:1px soli
     i.addEventListener('change',function(){apply(i.value,true);});
   });
   new MutationObserver(function(){ if(!root.getAttribute('data-palette')){var c=document.getElementById('t-'+current()); if(c) c.checked=true;} render(); }).observe(root,{attributes:true,attributeFilter:['data-theme']});
+})();
+</script>
+<script>
+(function(){
+  document.querySelectorAll('.player').forEach(function(p){
+    var v=p.querySelector('video'),b=p.querySelector('.play'),l=b.querySelector('.play-label'),t=l.textContent;
+    b.addEventListener('click',function(){
+      v.controls=true;p.classList.add('playing');
+      var r=v.play(); if(r&&r.catch){r.catch(function(){v.controls=false;p.classList.remove('playing');});}
+    });
+    v.addEventListener('ended',function(){v.controls=false;v.currentTime=0.5;p.classList.remove('playing');l.textContent='Replay';b.setAttribute('aria-label',b.getAttribute('aria-label').replace('Play video','Replay video'));});
+  });
 })();
 </script>
 </body>
