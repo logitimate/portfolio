@@ -265,10 +265,21 @@ footer{padding:28px 0 40px;color:var(--muted);font-size:14px;border-top:1px soli
       </figure>
       </div>
 
-      <div class="flow-head">
-        <h3>Tokens from Figma to production</h3>
-        <p>We defined one token naming strategy across marketing and product, then automated the handoff. A theme change that used to need developer time now ships by running one GitHub Action.</p>
+      <div class="pillars">
+        <div><h3>Theming</h3><p>Light and dark themes ship today, with light-alt and dark-alt built into the token library and ready to turn on. The switcher at the top of this page shows the idea.</p></div>
+        <div><h3>Accessibility</h3><p>We partnered with an accessibility consultancy on a WCAG AA audit and remediated every component. Building on the Angular CDK gave us full control over behavior and focus.</p></div>
+        <div><h3>Beyond Angular</h3><p>Semantic tokens and SCSS utilities for spacing, surfaces, typography, and icons let non-Angular teams match the IRIS look and feel.</p></div>
+        <div><h3>Docs and quality</h3><p>A documentation site with ephemeral StackBlitz examples, a Playwright test harness, semantic versioning, and release logs keep 50 domains confident in every update.</p></div>
       </div>
+    </div>
+  </section>
+
+  <section id="tokens" aria-labelledby="pipeline-title">
+    <div class="wrap">
+      <h2 id="pipeline-title">Tokens from Figma to production</h2>
+      <p class="intro">We defined one token naming strategy across marketing and product, then automated the handoff. A theme change that used to need developer time now ships by running one GitHub Action.</p>
+
+      
       <ol class="flow" aria-label="Token pipeline">
         <li><div class="step">Figma<small>Tokens defined by design</small></div></li>
         <li><div class="step">Figma API<small>Tokens pulled automatically</small></div></li>
@@ -281,13 +292,6 @@ footer{padding:28px 0 40px;color:var(--muted);font-size:14px;border-top:1px soli
         <img src="assets/figma-tokens.png" width="1908" height="1303" loading="lazy" alt="Figma variables panel for the Product Components file, showing a tokens collection of 315 variables grouped into space, radius, stroke, surface and button, with the surface base tokens open.">
         <figcaption>Where every theme starts: tokens defined in Figma, before the pipeline turns them into CSS.</figcaption>
       </figure>
-
-      <div class="pillars">
-        <div><h3>Theming</h3><p>Light and dark themes ship today, with light-alt and dark-alt built into the token library and ready to turn on. The switcher at the top of this page shows the idea.</p></div>
-        <div><h3>Accessibility</h3><p>We partnered with an accessibility consultancy on a WCAG AA audit and remediated every component. Building on the Angular CDK gave us full control over behavior and focus.</p></div>
-        <div><h3>Beyond Angular</h3><p>Semantic tokens and SCSS utilities for spacing, surfaces, typography, and icons let non-Angular teams match the IRIS look and feel.</p></div>
-        <div><h3>Docs and quality</h3><p>A documentation site with ephemeral StackBlitz examples, a Playwright test harness, semantic versioning, and release logs keep 50 domains confident in every update.</p></div>
-      </div>
 
       <figure class="shot">
         <img src="assets/hugo-docs.png" width="871" height="722" loading="lazy" alt="The FICO Platform help site, a documentation site built with Hugo, showing a hero, a grid of platform topics and a how-it-works diagram.">
