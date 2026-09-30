@@ -83,7 +83,7 @@ section h2{font-size:clamp(30px,3.6vw,42px);letter-spacing:-0.015em;max-width:22
 .path h3{font-size:18px;margin-top:4px}
 .path p{margin-top:8px;font-size:15px;color:var(--muted)}
 
-.proof{margin-top:44px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:40px;padding:32px;background:var(--surface);border:1px solid var(--line);border-radius:14px}
+.proof{margin-top:44px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:40px;padding:32px;background:var(--surface);border:1px solid var(--line);border-radius:14px}
 .proof h3{font-size:26px}
 .proof .fig{font-family:var(--font-display);font-weight:700;font-size:clamp(34px,4vw,48px);color:var(--accent);line-height:1}
 .proof p{color:var(--muted);margin-top:12px}
@@ -220,7 +220,7 @@ footer{padding:28px 0 40px;color:var(--muted);font-size:14px;border-top:1px soli
   <section id="iris" aria-labelledby="iris-title">
     <div class="wrap">
       <h2 id="iris-title">IRIS, FICO's design system</h2>
-      <p class="intro">I started IRIS in 2020 with one or two teams using it. Today 50 domains across FICO's legacy and modern platforms depend on it, and marketing and product share one token language.</p>
+      <p class="intro">I started IRIS in 2020 with one or two teams using it. Today 50 domains across FICO's legacy and modern platforms depend on it, and marketing and product share one token language. I've built more than 90 components for it, in both the core design system library and the platform.</p>
 
       <figure class="shot">
         <!-- Replace this placeholder with: <img src="..." alt="Screenshot: IRIS documentation site"> -->
@@ -229,6 +229,11 @@ footer{padding:28px 0 40px;color:var(--muted);font-size:14px;border-top:1px soli
       </figure>
 
       <div class="proof">
+        <div>
+          <div class="fig">90+</div>
+          <h3 style="margin-top:14px">Components built</h3>
+          <p>Across the core IRIS library and the platform layer built on top of it, covering everything from basic controls to full application patterns.</p>
+        </div>
         <div>
           <div class="fig">1–2 → 50</div>
           <h3 style="margin-top:14px">Teams to dependent domains</h3>
